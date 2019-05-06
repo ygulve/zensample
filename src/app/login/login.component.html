@@ -1,0 +1,32 @@
+<div *ngIf="save" class="alert alert-success fade-in alertnotify">
+  Data saved successfully.
+</div>
+
+<div class="homecontainer color-dark">
+  <div class="homecol1">
+    <p>{{header}}</p>
+  </div>
+
+</div>
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form">
+            <h3>Login</h3>
+            <form [formGroup]="loginPage">
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName='UserId' placeholder="username *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" formControlName='Password' placeholder="password *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btnSubmit" (click)="submit(loginPage)"  value="Login" />
+                </div>
+                <div class="form-group">
+                    <a href="#" class="ForgetPwd">Forget Password?</a>
+                </div>
+            </form>
+        </div>
+
+
+</div>
