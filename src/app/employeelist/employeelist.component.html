@@ -1,0 +1,32 @@
+<div class="content_box">
+
+    <div class="right_barss ">
+        	<div class="tab-content ">
+		<div class="tab-pane fade show active" id="lorem" role="tabpanel">
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>        
+        <th>Email</th>
+        <th>DOB</th>
+        <th>Contact Number</th>
+        <th>Derivco Email</th>
+        <th>Gender</th>        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of empList; let i =index">
+        <td>{{emp.firstName}}  {{emp.lastName}}</td>
+        <td>{{emp.email}}</td>
+        <td>{{emp.dateOfBirth}}</td>
+        <td>{{emp.phoneNumber}}</td>
+        <td>{{emp.derivcoEmail}}</td>
+        <td>{{emp.gender}}</td>
+      </tr>    
+    </tbody>
+  </table>
+		</div>
+	
+			</div>
+	</div>
+    </div>
