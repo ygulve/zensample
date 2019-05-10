@@ -1,26 +1,23 @@
 import { Injectable } from '@angular/core';
-import {Http, Response, RequestOptions, Headers} from '@angular/http';
+import {Http, Response, RequestOptions, Headers, RequestOptionsArgs} from '@angular/http';
 import { map, catchError } from "rxjs/operators";
 import { throwError as observableThrowError, Observable } from 'rxjs';
 import { config } from '../../config/config';
-import { HttpInterceptor } from '../http_interceptor';
-
 
 
 @Injectable()
 export class LoginService{
     resStatus: any;
-    constructor(private http: HttpInterceptor, private config: config){};
+    constructor(private http: Http, private config: config){};
 
     login(employee):Observable<any>{
-        let header = new Headers({'content-type' : 'application/json'});
-        let options = new RequestOptions({ headers: header });
+        let header = new Headers({'content-type' : 'application/json'});      
+        let options = new RequestOptions({ headers: header} );
         let body = JSON.stringify(employee);
 
-         return this.http.post(this.config.getAPIresult() + "/api/auth", body, { headers: header }).pipe(
+         return this.http.post(this.config.getAPIresult() + "/api/auth", body, options).pipe(
             map((res: Response) => {
-                 res.json();
-                 this.resStatus = res.status;
+                return res.json();                 
              }),
              catchError(this.handleError));
     }

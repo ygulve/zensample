@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl   } from '@angular/forms';
 import  {LoginService} from '../login/login.service';
 import {Employee} from '../model/employee';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   public header: string = "Login here";
   public message: string;
   public _employee : Employee;
-  constructor(public _loginservice : LoginService) { }
+  constructor(public _loginservice : LoginService,  private router: Router) { }
 
   ngOnInit() {
     this.initializeForm();
@@ -36,12 +37,13 @@ export class LoginComponent implements OnInit {
     this._loginservice.login(loginPage.value).subscribe(
       response => {
 
+          localStorage.setItem('token', response.token);
           this.message = response;
-          if (response.statusCode == "302") {
+          if (response.status == "302") {
          alert("Ohhh... Problem");
         }
         else {
-          alert("Success");
+          this.router.navigateByUrl('list');
         }
       });
 
