@@ -34,16 +34,13 @@ export class LoginComponent implements OnInit {
 
   submit(loginPage)
   {    
-
-
-
     debugger;
 
     this._loginservice.login(loginPage.value).subscribe(res => {
       if (res.token) {
         const expiresAt = res.expires;
         localStorage.setItem('token', res.token);
-        localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+        localStorage.setItem("expires_at", JSON.stringify(res.expiresAt));
 
         this.router.navigateByUrl('list');
       }     
