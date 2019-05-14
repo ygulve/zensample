@@ -4,8 +4,11 @@ import{HttpModule, XHRBackend, RequestOptions} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 import { LoginComponent } from './login/login.component';
 import{ LoginService} from './login/login.service';
+
 import { config } from "../config/config";
 import { FormsModule,ReactiveFormsModule   } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -14,10 +17,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { EmployeeService } from './employeelist/employee.service';
 import { TokenInterceptor } from './AuthService/token.interceptor';
 import {AuthService} from './AuthService/AuthService';
+import { ErrorInterceptor } from './AuthService/ErrorInterceptor';
+import { AppHeaderComponent } from './app-header/app-header.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,    
-    LoginComponent, EmployeelistComponent
+    LoginComponent, EmployeelistComponent, AppHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +38,7 @@ import {AuthService} from './AuthService/AuthService';
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }), // ToastrModule added,
+    NgxSpinnerModule
   ],
   providers: [config,LoginService,EmployeeService,AuthService,
         {
@@ -39,6 +47,9 @@ import {AuthService} from './AuthService/AuthService';
           useClass: TokenInterceptor,      
           multi: true
          
+        },
+        {
+           provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true ,
         }
   ],
   bootstrap: [AppComponent]

@@ -3,6 +3,8 @@ import { FormGroup, Validators, FormControl   } from '@angular/forms';
 import  {LoginService} from '../login/login.service';
 import {Employee} from '../model/employee';
 import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -33,19 +35,36 @@ export class LoginComponent implements OnInit {
   submit(loginPage)
   {    
 
-    debugger;
-    this._loginservice.login(loginPage.value).subscribe(
-      response => {
 
-          localStorage.setItem('token', response.token);
-          this.message = response;
-          if (response.status == "302") {
-         alert("Ohhh... Problem");
-        }
-        else {
-          this.router.navigateByUrl('list');
-        }
-      });
+
+    debugger;
+
+    this._loginservice.login(loginPage.value).subscribe(res => {
+      if (res.token) {
+        const expiresAt = res.expires;
+        localStorage.setItem('token', res.token);
+        localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+
+        this.router.navigateByUrl('list');
+      }     
+    }, (err) => {
+      console.log(err)
+    });
+
+    // this._loginservice.login(loginPage.value).subscribe(
+    //   response => {
+
+    //       localStorage.setItem('token', response.token);
+    //       this.message = response;
+    //       if (response.status == "302") {
+    //      alert("Ohhh... Problem");
+    //     }
+    //     else {
+    //       if(response.status != "401"){
+    //       this.router.navigateByUrl('list');
+    //     }
+    //     }
+    //   });
 
   }
 
