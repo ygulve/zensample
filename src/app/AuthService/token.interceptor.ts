@@ -19,29 +19,6 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {   
 
-//     let currentUser = this.auth.getToken();
-//         if (currentUser && currentUser) {
-//             req = req.clone({
-//                 setHeaders: { 
-//                     'Content-Type' : 'application/json',
-//                     Authorization: `Bearer ${currentUser}`
-//                 }
-//             });
-//         }
-      
-//         //## I tried this one but not working
-//     // const header = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.auth.getToken())
-   
-//     // req = req.clone({ headers: header })
-  
-//     console.log('Intercepted HTTP call', req.headers);
-//     debugger;
-//     return next.handle(req);
-
-//   }
-// }
-
-
 const token = localStorage.getItem('token');
     if (token) {
       request = request.clone({
@@ -67,6 +44,7 @@ const token = localStorage.getItem('token');
       catchError((error: HttpErrorResponse) => {
         console.log(error);
         if (error.status === 401) {
+          localStorage.clear();
           this.router.navigate(['login']);
         }
         if (error.status === 400) {

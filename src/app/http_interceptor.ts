@@ -10,6 +10,7 @@ import {
 } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
+import { AuthService } from './AuthService/AuthService';
 
 
 @Injectable()
@@ -18,7 +19,8 @@ export class HttpInterceptor extends Http {
 
     constructor(
         backend: ConnectionBackend,
-        defaultOptions: RequestOptions       
+        defaultOptions: RequestOptions 
+        , public auth: AuthService    
     ) {
         super(backend, defaultOptions);
     }
@@ -33,9 +35,10 @@ export class HttpInterceptor extends Http {
         if (options.headers == null) {
             options.headers = new Headers();
         }
-        options.headers.append('Content-Type', 'application/json');
+        options.headers.append('Content-Type', 'application/json');        
         options.headers.append('Pragma', 'no-cache');
         options.headers.append('Cache-Control','no-cache');
+        options.headers.append('Authorization', this.auth.getToken())
 
         return options;
     }

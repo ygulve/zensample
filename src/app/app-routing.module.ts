@@ -4,6 +4,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoginComponent } from './login/login.component';
 import { EmployeelistComponent } from './employeelist/employeelist.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
 
     path:'list',
     component:EmployeelistComponent
+  },
+  {
+    path:'register',
+    component:RegisterComponent
   }
 ];
 

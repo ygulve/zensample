@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 employee-form">
+        <h3>Employee detail</h3>
+        <form [formGroup]="employeePage">
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName='FirstName' placeholder="First Name *" value="" />
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName='LastName' placeholder="LastName *" value="" />
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName='StaffId' placeholder="Staff Id *" value="" />
+          </div>
+          <div class="form-group">
+            <input type="date" class="form-control" formControlName='DateOfBirth' placeholder="DateOfBirth *" value="" />
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName='PhoneNumber' placeholder="PhoneNumber *" value="" />
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName='Email' placeholder="Email *" value="" />
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName='DerivcoEmail' placeholder="Derivco Email *"
+              value="" />
+          </div>
+          <div class="form-group">
+            <select class="form-control" formControlName='Gender' placeholder="Gender *" value="">
+              <option value="">--Select gender--</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select class="form-control" formControlName='ManagerId' placeholder="Select Manager *" value="">
+              <option value="">--Select Manager--</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select class="form-control" formControlName='TeamId' placeholder="Select Team *" value="">
+              <option value="">--Select team--</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName='UserId' placeholder="User name *" value="" />
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName='Password' placeholder="Password *" value="" />
+          </div>
+          <div class="form-group">
+            <select class="form-control" formControlName='RoleId' placeholder="Select Role *" value="">
+              <option value="">--Select Role--</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btnSubmit" (click)="submit(registerPage)" value="Register" /> &nbsp;
+            <input type="submit" class="btnSubmit" value="Reset" />
+          </div>
+        </form>
+      </div>
+    </div>
+  

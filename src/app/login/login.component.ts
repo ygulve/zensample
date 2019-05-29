@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl   } from '@angular/forms';
-import  {LoginService} from '../login/login.service';
-import {Employee} from '../model/employee';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { LoginService } from '../login/login.service';
+import { Employee } from '../model/employee';
 import { Router } from '@angular/router';
+import { MessageService } from '../message/message.service';
 
 
 @Component({
@@ -14,55 +15,39 @@ export class LoginComponent implements OnInit {
 
   public loginPage: FormGroup;
   public header: string = "Login here";
-  public message: string;
-  public _employee : Employee;
-  constructor(public _loginservice : LoginService,  private router: Router) { }
+  public _employee: Employee;
+  constructor(public _loginservice: LoginService, private router: Router, private message: MessageService) { }
 
   ngOnInit() {
     this.initializeForm();
   }
 
-  initializeForm()
-  {
+  initializeForm() {
     this.loginPage = new FormGroup({
-      UserId : new FormControl('',[Validators.required]),
-      Password: new FormControl('',[Validators.required])
+      UserId: new FormControl('', [Validators.required]),
+      Password: new FormControl('', [Validators.required])
     });
-
-
   }
 
-  submit(loginPage)
-  {    
-    debugger;
-
+  submit(loginPage) { 
     this._loginservice.login(loginPage.value).subscribe(res => {
       if (res.token) {
-        const expiresAt = res.expires;
         localStorage.setItem('token', res.token);
         localStorage.setItem("expires_at", JSON.stringify(res.expiresAt));
 
         this.router.navigateByUrl('list');
-      }     
+      }
+
+      if (res.error) {
+        this.message.showLoginFailed(res.error);
+      }
     }, (err) => {
       console.log(err)
     });
+  }
 
-    // this._loginservice.login(loginPage.value).subscribe(
-    //   response => {
-
-    //       localStorage.setItem('token', response.token);
-    //       this.message = response;
-    //       if (response.status == "302") {
-    //      alert("Ohhh... Problem");
-    //     }
-    //     else {
-    //       if(response.status != "401"){
-    //       this.router.navigateByUrl('list');
-    //     }
-    //     }
-    //   });
-
+  register(){
+    this.router.navigateByUrl('register');
   }
 
 }

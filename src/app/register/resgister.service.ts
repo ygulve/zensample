@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
-import { catchError, tap } from "rxjs/operators";
-import { Observable } from 'rxjs';
-import { config } from '../../config/config';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { config } from 'src/config/config';
+import { catchError, tap } from 'rxjs/operators';
 
+@Injectable()
+export class RegisterService {
 
-@Injectable({ providedIn: 'root' })
-export class LoginService {
-    resStatus: any;
-    constructor(private http: HttpClient, private config: config) { };
+    constructor(private http: HttpClient, private config: config) { }
 
-    login(employee): Observable<any> {
-        return this.http.post<any>(this.config.getAPIresult() + "/api/auth", employee)
+    regsiter(registerPage): Observable<any> {
+
+        return this.http.post<any>(this.config.getAPIresult() + "/api/register", registerPage)
             .pipe(
                 catchError(this.handleError));
     }
@@ -21,7 +20,7 @@ export class LoginService {
         let errMsg: string;
         if (error instanceof Response) {
             const body = error.json() || '';
-            const err = body.error || JSON.stringify(body);
+            const err = body || JSON.stringify(body);
             errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
         } else {
             errMsg = error.message ? error.message : error.toString();
@@ -29,5 +28,4 @@ export class LoginService {
         console.log(errMsg);
         return Observable.throw(errMsg);
     }
-
 }

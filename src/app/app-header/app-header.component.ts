@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from '../AuthService/AuthService';
 
 @Component({
   selector: 'app-app-header',
@@ -10,14 +11,11 @@ export class AppHeaderComponent implements OnInit {
   @Input() public title: string;
   @Input() public isUserLoggedIn: boolean = false;
   
-  constructor() { }
+  constructor(private auth : AuthService) { }
 
   ngOnInit(){}
-  ngDoCheck() {
-debugger;
-    console.log("I am here");
-
-    if(localStorage.getItem("token")!=null)
+  ngAfterContentInit() {
+    if(this.auth.getToken()!=null)
     {
       this.isUserLoggedIn = true;
     }
