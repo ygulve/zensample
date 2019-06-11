@@ -4,7 +4,8 @@ import { LoginService } from '../login/login.service';
 import { Employee } from '../model/employee';
 import { Router } from '@angular/router';
 import { MessageService } from '../message/message.service';
-
+import { EventEmitterService } from '../_helpers/event-emitter';
+import { EncryptPassword, DecryptPassword } from '../_helpers/encrypt.password';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,9 @@ export class LoginComponent implements OnInit {
   public loginPage: FormGroup;
   public header: string = "Login here";
   public _employee: Employee;
-  constructor(public _loginservice: LoginService, private router: Router, private message: MessageService) { }
+
+  constructor(public _loginservice: LoginService, private router: Router, private message: MessageService,
+    private eventEmitterService: EventEmitterService) { }
 
   ngOnInit() {
     this.initializeForm();
@@ -29,12 +32,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  submit(loginPage) { 
+  submit(loginPage) {
+    debugger;
+    var password = EncryptPassword(loginPage.value.Password, loginPage.value.UserId);
+    //loginPage.value.Password = password.toString();
+
+    var decrypt = DecryptPassword(loginPage.value.Password, loginPage.value.UserId);
+
     this._loginservice.login(loginPage.value).subscribe(res => {
+
       if (res.token) {
         localStorage.setItem('token', res.token);
         localStorage.setItem("expires_at", JSON.stringify(res.expiresAt));
-
+        this.eventEmitterService.onFirstComponentButtonClick();
         this.router.navigateByUrl('list');
       }
 
@@ -46,7 +56,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  register(){
+  register() {
     this.router.navigateByUrl('register');
   }
 

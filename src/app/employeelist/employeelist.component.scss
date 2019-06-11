@@ -1,7 +1,12 @@
 
 .content_box{
-    float:left;
-    width:100%;
+    align-content: center;
+    display: block;    
+    width:99%;
+    margin: auto;
+    position: relative;  
+    left: 0;  
+    right: 0;  
 }
 .left_bar{
     float:left;
@@ -18,35 +23,3 @@
         height:100%;
 }
 
-.nav-tabs--vertical li{
-    float:left;
-    width:100%;
-    padding:0;
-    position:relative;
-}
-
-
-.nav-tabs--vertical li a{
-    float:left;
-    width:100%;
-    padding: 15px;
-    border-bottom:1px solid #adcff7;
-    color:#1276F0;
-}
-
-.nav-tabs--vertical li a.active::after {
-    content: "";
-    border-color: #1276F0;
-    border-style: solid;
-    position: absolute;
-    right: -8px;
-    /* border-top: transparent; */
-    border-right: transparent;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    /*border-bottom: 16px solid #1276F0;*/
-      border-bottom: 16px solid #fff;
-    border-top: 0;
-    transform: rotate(270deg);
-    z-index:999;
-}

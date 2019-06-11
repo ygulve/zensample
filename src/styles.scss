@@ -28,8 +28,8 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 body {
     width: 100%;
   background: #efeff6;
-  padding: 1em;
-  font-family: 'Roboto', sans-serif;
+  //font-family: 'Roboto', sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: #71748d;
 }
 
@@ -47,6 +47,24 @@ body {
   font-size: 10px;
 }
 
+.mainContainer
+{
+  width: 70%;
+  margin: auto;
+  position: absolute;  
+  left: 0;  
+  right: 0;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.listContainer
+{
+  width: 90%;
+  margin: auto;
+  position: absolute;  
+  left: 0;  
+  right: 0;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
 .header
 {
   background-color: white;
@@ -57,7 +75,7 @@ body {
 
 .gameInformation {
   font-size: 25px;
-  color: #007bff;
+  color: #2e2e2e;
   float: left; 
   font-family: Georgia, 'Times New Roman', Times, serif;  
 }
@@ -65,11 +83,11 @@ body {
 ul {
   list-style-type: none;
   display: block;
-  color: gray;
+  color:#525c65;
   margin-left: 500px;
   text-align: right;
-  font-weight: bold;
   margin-top: 5px;
+  font-size: 16px;
 }
 
 ul li {
@@ -78,17 +96,15 @@ ul li {
 }
 
 ul li a {
-  font-size: 14px;
+  
+  color:#525c65;
   text-decoration: none;
 }
 
-ul li a:hover {
-  font-size: 14px;
+ul li a:hover {  
   text-decoration: none;
   text-underline-position: below;
-  color: 3fa0e1;
-  border-bottom: #3fa0e1 3px solid;
-  padding-bottom: 5px;
+  color: #525c65;
 }
 
 a {
@@ -115,9 +131,12 @@ table {
   grid-template-columns: 50% auto;
   color: gray;
   font-style: italic;
+  margin-bottom: 5px;
+  
 }
 
 .buildcontainer {
+ 
   display: grid;
   grid-template-columns: 100% auto;
 }
@@ -133,11 +152,10 @@ table {
 
 .homecol1 {
   padding: .4em 1.3em;
-  font-weight: bold;
-  font-size: 14px;
+  font-weight: bold;  
   color: white;
   margin-top: 10px;
-  width: 100%;
+  width: 100%; 
 }
 
 
@@ -146,7 +164,7 @@ table {
 }
 
 .color-dark {
-  background: #2885C4;
+  background-image: linear-gradient(to right, #02b3e4 0%, #02ccba 100%);
 }
 
 .color-light {
@@ -173,30 +191,6 @@ input.location {
 }
 
 
-// th
-//  {   
-//     text-align: center;
-//      vertical-align: middle;
-//      float: left;
-//      margin-left: 10px;
-//      height: 35px;
-//  }
-// thead
-// {
-//     padding: 10px;
-//     height: 20px;
-// }
-// tr{    
-//     padding: 10px;
-//     height: 20px;
-//     border:rgba(255, 255, 255, 0.233) 1px solid;
-//     width: 100%;
-// }
-// tbody
-// {
-//     border: rgba(255, 255, 255, 0.096)  1px solid;
-//     width: 100%;
-// }
 .life-container {
   background: #3fa0e1;
   padding: .5em;
@@ -346,12 +340,15 @@ input.location {
 
 .label-container {
   float: left;
-  width: 200px
+  width: 200px;
+  text-align: justify;
+  align-items: center;  
 }
 
 .txt-container {
-  margin-left: 50px;
+  margin-left: 200px;
   padding: 5px;
+  width: 300px;
 }
 
 .btn_container {
@@ -364,7 +361,8 @@ input.location {
 }
 
 .search-box-txt {
-  widows: 300px;
+  width: 300px;
+  padding: 5px;
 font-size: 12px;
 height: 30px;
 line-height: 1.5;
@@ -553,11 +551,11 @@ table {
 }
 
 table th {
-  background: #fafafa;
+  background:  #02ccba ;
   text-align: left;
   padding: 10px;
   font-size: 12px;
-  color: #373757;
+  color: #ffffff;
 }
 
 table td {
@@ -584,4 +582,83 @@ table td {
 {
   float: right;
   padding:5px;
+}
+
+.btnSubmit {
+  width: 30%;
+  padding: 1.5%;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+    background-color: #02b3e4;
+    border: 0.125rem solid transparent;
+}
+.login-form .btnSubmit {
+  font-weight: 600;
+  color: #fff;
+  background-color: #02b3e4;
+  border: 0.125rem solid transparent;
+}
+
+.login-form .ForgetPwd {
+  color: #0062cc;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+
+.datepicker
+  {
+    width: 50% !important;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+  .datepicker.is-invalid {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + .75rem);
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="%23dc3545" viewBox="-2 -2 7 7"><path stroke="%23dc3545" d="M0 0l3 3m0-3L0 3"/><circle r=".5"/><circle cx="3" r=".5"/><circle cy="3" r=".5"/><circle cx="3" cy="3" r=".5"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center right calc(.375em + .1875rem);
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+}
+
+.datepicker.is-invalid~.invalid-feedback, .datepicker.is-invalid~.invalid-tooltip, .was-validated .datepicker:invalid~.invalid-feedback, .was-validated .datepicker:invalid~.invalid-tooltip {
+  display: block;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Header ]*/
+
+.flag[_ngcontent-iridium-us-c22] {
+  width: 0;
+  height: 0;
+  position: absolute;
+  display: block;
+  z-index: 5000;
+  border-width: 25px;
+  border-style: solid;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+   border-top-color: #ff5483; 
+   border-left-color: #ff5483;
+}
+
+h6, .h6 {
+  font-size: 0.750rem;
+  line-height: 1rem;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #ffffff;
+  padding-left: 20px;
 }

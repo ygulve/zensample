@@ -3,7 +3,7 @@
   z-index: 1;
   background-color: #252525;
   width: 100%;
-  height: 50px;
+  height: 30px;
 }
 
 
@@ -24,3 +24,24 @@
   margin-right: -15px;
   margin-left: -15px;
 }
+
+/* Stackoverflow preview fix, please ignore */
+.navbar-nav {
+  flex-direction: row;
+}
+
+.nav-link {
+  padding-right: .5rem !important;
+  padding-left: .5rem !important;
+}
+
+/* Fixes dropdown menus placed on the right side */
+.ml-auto .dropdown-menu {
+  left: auto !important;
+  right: 0px;
+}
+.dropdown-item:hover
+{
+  background-color: #07ffea;
+}
+

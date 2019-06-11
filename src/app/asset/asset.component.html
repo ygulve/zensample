@@ -1,0 +1,63 @@
+<div class="mainContainer rounded">
+  <div class="homecontainer color-dark rounded">
+    <div class="homecol1">
+      <h6>Asset Allocation</h6>
+    </div>
+    <div _ngcontent-iridium-us-c22="" class="flag flag-bg-pink ng-star-inserted">
+    </div>
+  </div>
+
+
+<div class="buildcontainer color-light">
+
+  <div class="col-md-16">
+    <div class="homecol">
+      <form [formGroup]="asset">
+        <div class="label-container">
+          <label>Select Employee</label>
+        </div>
+        <div class="txt-container">
+
+          <select class="form-control" formControlName='Gender' placeholder="Gender *" value=""
+            [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
+            <option value="0">Select</option>
+          </select>
+          <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+            <div *ngIf="f.FirstName.errors.required">First Name is required</div>
+          </div>
+        </div>
+        <div class="label-container">
+          <label>Desk Number</label>
+        </div>
+        <div class="txt-container">
+
+          <input type="text" class="form-control" formControlName='DeskNo' placeholder="Desk number *" value=""
+            [ngClass]="{ 'is-invalid': submitted && f.DeskNo.errors }" />
+          <div *ngIf="submitted && f.DeskNo.errors" class="invalid-feedback">
+            <div *ngIf="f.DeskNo.errors.required">Desk Number is required</div>
+          </div>
+        </div>
+
+        <div class="label-container">
+          <label>Asset Number</label>
+        </div>
+        <div class="txt-container">
+
+          <input type="text" class="form-control" formControlName='AssetNo' placeholder="Asset Number *" value=""
+            [ngClass]="{ 'is-invalid': submitted && f.AssetNo.errors }" />
+          <div *ngIf="submitted && f.AssetNo.errors" class="invalid-feedback">
+            <div *ngIf="f.AssetNo.errors.required">Asset Number is required</div>
+          </div>
+        </div>
+        <div class="label-container">
+
+        </div>
+        <div class="txt-container">
+          <input type="submit" class="btnSubmit rounded" (click)="submit(empPage)" value="Submit" /> &nbsp;
+          <input type="reset" class="btnSubmit rounded" value="Reset" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

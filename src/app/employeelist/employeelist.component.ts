@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren, ContentChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { EmployeeService } from '../employeelist/employee.service';
-import { Employee } from '../model/employee';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from '../AuthService/AuthService';
-
+import { EventEmitterService } from '../_helpers/event-emitter';
 
 @Component({
   selector: 'app-employeelist',
@@ -28,19 +27,31 @@ export class EmployeelistComponent implements OnInit {
   public empdata: any[] = [];
   public index: number;
   public tobeSorted: any = {};
+  public header:string ="Employee List";
 
   ngOnInit() {
-    this.getData();
+    this.getData();       
+     
+    }
 
-  }
-
+ 
   getData() {
     if (this.auth.isTokenExpired() != false) {
       this.spinner.show();
       this.empService.getEmployee().subscribe(res => {
-        this.empList = res;
+        this.empList = res;      
         this.temp = res;
         this.empdata = res;
+        this.empList.forEach(element => {
+          if(element.gender == 1)
+          {
+            element.gender ="Male"
+          }
+          else
+          {
+            element.gender ="Female"
+          }
+        })
         this.spinner.hide();
       }, (err) => {
         console.log(err)
@@ -52,12 +63,13 @@ export class EmployeelistComponent implements OnInit {
     }
   }
 
-  register() {
-    this.router.navigateByUrl("register");
+  editItem(empId) {
+    
+    this.router.navigate(["employeedetail"],  { queryParams: { empId: empId } });
   }
 
   onSearch() {
-    debugger;
+
     this.searchedItem = true;
     this.empdata = [];
     this.temp.forEach(element => {

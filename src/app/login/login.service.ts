@@ -12,6 +12,7 @@ export class LoginService {
     constructor(private http: HttpClient, private config: config) { };
 
     login(employee): Observable<any> {
+        debugger;
         return this.http.post<any>(this.config.getAPIresult() + "/api/auth", employee)
             .pipe(
                 catchError(this.handleError));

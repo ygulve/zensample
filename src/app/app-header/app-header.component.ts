@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../AuthService/AuthService';
+import { EventEmitterService } from '../_helpers/event-emitter';
+import { config } from 'src/config/config';
 
 @Component({
   selector: 'app-app-header',
@@ -8,25 +10,34 @@ import { AuthService } from '../AuthService/AuthService';
 })
 export class AppHeaderComponent implements OnInit {
 
-  @Input() public title: string;
-  @Input() public isUserLoggedIn: boolean = false;
-  
-  constructor(private auth : AuthService) { }
+  public title: string;
+  private isUserLoggedIn: boolean;
 
-  ngOnInit(){}
-  ngAfterContentInit() {
-    if(this.auth.getToken()!=null)
+  constructor(private auth: AuthService, 
+    private eventEmitterService: EventEmitterService, private config: config) { }
+
+  ngOnInit() {
+
+    if(localStorage.getItem("isloggedin") == undefined)
     {
-      this.isUserLoggedIn = true;
-    }
+    if (this.eventEmitterService.subsVar == undefined) {
+      this.eventEmitterService.subsVar = this.eventEmitterService.
+        invokeFirstComponentFunction.subscribe((name: string) => {
+          this.isUserLoggedIn = true;       
+          localStorage.setItem("isloggedin", "yes");  
+        });
+  }
+}
+else{
+  this.isUserLoggedIn = true;       
+}
   }
 
-  logout()
-  {
-    this.isUserLoggedIn = false;    
+  logout() {
+    this.isUserLoggedIn = false;
     localStorage.removeItem("expires_at");
     localStorage.removeItem("token");
-    localStorage.clear();    
+    localStorage.clear();
   }
 
 }

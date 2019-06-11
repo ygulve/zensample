@@ -18,7 +18,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService,  private router: Router) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {   
-
+debugger;
 const token = localStorage.getItem('token');
     if (token) {
       request = request.clone({
@@ -48,6 +48,9 @@ const token = localStorage.getItem('token');
           this.router.navigate(['login']);
         }
         if (error.status === 400) {
+          alert(error.error);
+        }
+        if (error.status === 500) {
           alert(error.error);
         }
         return throwError(error);

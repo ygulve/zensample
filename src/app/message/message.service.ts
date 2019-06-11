@@ -56,4 +56,14 @@ export class MessageService {
         } );
     }
 
+    public showUpdateFalied() {
+
+        this.toastr.success("Record update falied", 'Update',
+            {
+                positionClass: "toast-top-right",
+                timeOut: 1000,
+                extendedTimeOut: 1200
+            });
+    }
+
 }

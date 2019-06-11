@@ -5,6 +5,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoginComponent } from './login/login.component';
 import { EmployeelistComponent } from './employeelist/employeelist.component';
 import { RegisterComponent } from './register/register.component';
+import { EmployeedetailComponent } from './employeedetail/employeedetail.component';
+import { AssetComponent } from './asset/asset.component';
 
 const routes: Routes = [
   {
@@ -19,7 +21,16 @@ const routes: Routes = [
   {
     path:'register',
     component:RegisterComponent
+  },
+  {
+    path:'employeedetail',
+    component:EmployeedetailComponent
+  },
+  {
+    path:'asset',
+    component:AssetComponent
   }
+
 ];
 
 @NgModule({

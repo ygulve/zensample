@@ -5,6 +5,7 @@ import { throwError as observableThrowError, Observable } from 'rxjs';
 import { config } from '../../config/config';
 import { HttpClient } from '@angular/common/http';
 
+
 @Injectable({ providedIn: 'root' })
 export class EmployeeService{
 
@@ -13,9 +14,8 @@ export class EmployeeService{
 
  
     getEmployee(): Observable<any>
-    {
-        debugger;
-
+        {
+        
         return this.http.get(this.config.getAPIresult()+ "/api/employee").pipe(
             map((response: Response) => {
                return  response

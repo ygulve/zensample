@@ -1,14 +1,14 @@
-<div class="homecontainer color-dark">
-  <div class="homecol1">
-    <p>{{header}}</p>
-  </div>
-
-</div>
-
 <div class="container login-container">
-  <div class="row">
-    <div class="col-md-6 login-form">
-      <h3>Login</h3>
+
+  <div class="ro11w">
+    <div class="login-form col-md-6 ">
+      <div class="homecontainer color-dark">
+        <div class="homecol1">
+          <h6>{{header}}</h6>
+        </div>
+        <div _ngcontent-iridium-us-c22="" class="flag flag-bg-pink ng-star-inserted">
+        </div>
+      </div>
       <form [formGroup]="loginPage">
         <div class="form-group">
           <input type="text" class="form-control" formControlName='UserId' placeholder="username *" value="" />
@@ -17,8 +17,8 @@
           <input type="password" class="form-control" formControlName='Password' placeholder="password *" value="" />
         </div>
         <div class="form-group">
-          <input type="submit" class="btnSubmit" (click)="submit(loginPage)" value="Login" />&nbsp;
-          <input type="submit" class="btnSubmit" (click)="register()" value="Register" />
+          <input type="submit" class="btnSubmit  rounded" (click)="submit(loginPage)" value="Login" />&nbsp;
+          <input type="submit" class="btnSubmit  rounded" (click)="register()" value="Register" />
         </div>
         <div class="form-group">
           <a href="#" class="ForgetPwd">Forget Password?</a>

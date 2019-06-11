@@ -1,3 +1,166 @@
+<div class="mainContainer rounded">
+<div class="homecontainer color-dark rounded" >
+  <div class="homecol1">
+      <h6>{{header}}</h6>
+    </div>
+    <div _ngcontent-iridium-us-c22="" class="flag flag-bg-pink ng-star-inserted">    
+      </div>
+  </div>  
+<div class="buildcontainer color-light">
+  <div class="col-md-16">
+    <div class="homecol">
+      <form [formGroup]="empPage">
+          <input type="text" style="visibility: hidden; display: none" formControlName='EmployeeId' value=""> 
+        <div class="label-container">
+          <label>First Name</label>
+        </div>
+        <div class="txt-container">
+        
+          <input type="text" class="form-control" formControlName='FirstName' placeholder="First Name *" value=""
+            [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }" />
+          <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+            <div *ngIf="f.FirstName.errors.required">First Name is required</div>
+          </div>          
+        </div>       
+        <div class="label-container">
+          <label>Last Name</label>
+        </div>
+        <div class="txt-container">
+          <input type="text" class="form-control" formControlName='LastName' placeholder="LastName *" value=""
+            [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }" />
+          <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+            <div *ngIf="f.LastName.errors.required">Last Name is required</div>
+          </div>
+        </div>
+        <div class="label-container">
+          <label>DOB</label>
+        </div>
+        <div class="txt-container">
+
+          <input matInput class="datepicker" [matDatepicker]="picker" formControlName='DateOfBirth'
+            placeholder="Date of birth *" value="" [ngClass]="{ 'is-invalid': submitted && f.DateOfBirth.errors }">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <div *ngIf="submitted && f.DateOfBirth.errors" class="invalid-feedback">
+            <div *ngIf="f.DateOfBirth.errors.required">Date of birth is required</div>
+          </div>
+        </div>
+
+        <div class="label-container">
+          <label>Phone Number</label>
+        </div>
+        <div class="txt-container">
+          <input type="number" class="form-control" formControlName='PhoneNumber' placeholder="PhoneNumber *" value=""
+            [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }" />
+          <div *ngIf="submitted && f.PhoneNumber.errors" class="invalid-feedback">
+            <div *ngIf="f.PhoneNumber.errors.required">Phone Number is required</div>
+          </div>
+        </div>
+        <div class="label-container">
+          <label>Email</label>
+        </div>
+        <div class="txt-container">
+          <input type="text" class="form-control" formControlName='Email' placeholder="Email *" value=""
+            [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" />
+          <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+            <div *ngIf="f.Email.errors.required">Email is required</div>
+            <div *ngIf="f.Email.errors.email">Email must be a valid email address</div>
+          </div>
+        </div>
+        <div class="label-container">
+            <label>Derivco Email</label>
+          </div>
+        <div class="txt-container">
+          <input type="text" class="form-control" formControlName='DerivcoEmail' placeholder="Derivco Email *" value=""
+            [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" />
+          <div *ngIf="submitted && f.DerivcoEmail.errors" class="invalid-feedback">
+            <div *ngIf="f.Email.errors.required">Derivco Email is required</div>
+            <div *ngIf="f.Email.errors.email">Derivco Email must be a valid email address</div>
+          </div>
+        </div>
+        <div class="label-container">
+          <label>Gender</label>
+        </div>
+        <div class="txt-container">
+          <select class="form-control" formControlName='Gender' placeholder="Gender *" value=""
+            [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
+            <option class="option" value="">--Select gender--</option>
+            <option class="option" value="1">Male</option>
+            <option class="option" value="2">Female</option>
+          </select>
+          <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
+            <div *ngIf="f.Gender.errors.required">Gender is required</div>
+          </div>
+        </div>       
+        <div class="label-container">
+          <label>Staff Id</label>
+        </div>
+        <div class="txt-container">
+          <input type="text" class="form-control" formControlName='StaffId' (input)="fillUserId()"
+            placeholder="Staff Id *" value="" [ngClass]="{ 'is-invalid': submitted && f.StaffId.errors }" />
+          <div *ngIf="submitted && f.StaffId.errors" class="invalid-feedback">
+            <div *ngIf="f.StaffId.errors.required">Staff Id is required</div>
+          </div>
+        </div>
+        <div class="label-container">
+          <label>User Id</label>
+        </div>
+        <div class="txt-container">
+          <input type="text" class="form-control" formControlName='UserId' placeholder="User Id *" value=""
+            [ngClass]="{ 'is-invalid': submitted && f.UserId.errors }" />
+          <div *ngIf="submitted && f.UserId.errors" class="invalid-feedback">
+            <div *ngIf="f.UserId.errors.required">User Id is required</div>
+          </div>
+        </div>
+        <!-- <div class="label-container">
+          <label>Password</label>
+        </div>
+        <div class="txt-container">
+          <input type="password" class="form-control" formControlName='Password' placeholder="Password *" value=""
+            [ngClass]="{ 'is-invalid': submitted && f.Password.errors }" />
+          <div *ngIf="submitted && f.Password.errors" class="invalid-feedback">
+            <div *ngIf="f.Password.errors.required">Password is required</div>
+            <div *ngIf="f.Password.errors.minlength">Password must be at least 6 characters</div>
+            <div *ngIf="f.Password.errors.pattern">
+              Password is not valid. Your password must contain at least one uppercase, one lowercase, one number and
+              one special character.
+            </div>
+          </div>
+        </div>
+        <div class="label-container">
+          <label>Confirm Password</label>
+        </div>
+        <div class="txt-container">
+          <input type="password" class="form-control" formControlName='ConfirmPassword' placeholder="Confirm Password *"
+            value="" [ngClass]="{ 'is-invalid': submitted && f.ConfirmPassword.errors }" />
+          <div *ngIf="submitted && f.Password.errors" class="invalid-feedback">
+            <div *ngIf="f.ConfirmPassword.errors.required">Password is required</div>
+            <div *ngIf="f.ConfirmPassword.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+        </div> -->
+
+        <div class="label-container">
+
+        </div>
+        <div class="txt-container">
+          <input type="submit" class="btnSubmit rounded" (click)="submit(empPage)" value="Submit" /> &nbsp;
+          <input type="reset" class="btnSubmit rounded" value="Reset" />
+        </div>
+
+        <!-- </div> -->
+        <!-- <div style="float: right;">         
+            <img [src]="imgURL" height="200" *ngIf="imgURL"><br>
+          <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+         
+  
+        </div> -->
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<!-- 
+
 <div class="container">
     <div class="row">
       <div class="col-md-6 employee-form">
@@ -13,7 +176,13 @@
             <input type="text" class="form-control" formControlName='StaffId' placeholder="Staff Id *" value="" />
           </div>
           <div class="form-group">
-            <input type="date" class="form-control" formControlName='DateOfBirth' placeholder="DateOfBirth *" value="" />
+            <input matInput class="datepicker" [matDatepicker]="picker" formControlName='DateOfBirth'
+            placeholder="Date of birth *" value="" [ngClass]="{ 'is-invalid': submitted && f.DateOfBirth.errors }">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <div *ngIf="submitted && f.DateOfBirth.errors" class="invalid-feedback">
+            <div *ngIf="f.DateOfBirth.errors.required">Date of birth is required</div>
+          </div>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" formControlName='PhoneNumber' placeholder="PhoneNumber *" value="" />
@@ -57,5 +226,4 @@
           </div>
         </form>
       </div>
-    </div>
-  
+    </div> -->

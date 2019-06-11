@@ -6,6 +6,8 @@ import { MessageService } from '../message/message.service';
 import { Router } from '@angular/router';
 // import custom validator to validate that password and confirm password fields match
 import { MustMatch } from '../_helpers/must-match.validator';
+import * as CryptoJS from 'crypto-js';
+import { EncryptPassword } from '../_helpers/encrypt.password';
 
 @Component({
   selector: 'app-register',
@@ -16,15 +18,15 @@ export class RegisterComponent implements OnInit {
   public itemcount: number = 0;
   public registerPage: FormGroup;
   public required: boolean;
-  public header: string = "Register here";
+  public header: string = "New Employee Registration";
   submitted = false;
   pwdPattern = "^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$";
-  
+
 
   constructor(private registerService: RegisterService,
     private spinner: NgxSpinnerService,
     private message: MessageService, private router: Router, private formBuilder: FormBuilder) { }
-    
+
   ngOnInit() {
     this.initializeForm();
   }
@@ -38,13 +40,13 @@ export class RegisterComponent implements OnInit {
       DateOfBirth: new FormControl('', [Validators.required]),
       PhoneNumber: new FormControl('', [Validators.required]),
       Email: new FormControl('', [Validators.required, Validators.email]),
-      Gender: new FormControl('', [Validators.required]),   
+      Gender: new FormControl('', [Validators.required]),
       UserId: new FormControl('', [Validators.required]),
       Password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(this.pwdPattern)]),
-      ConfirmPassword: new FormControl('', [Validators.required])     
+      ConfirmPassword: new FormControl('', [Validators.required])
     }, {
-      validator: MustMatch('Password', 'ConfirmPassword')
-  });
+        validator: MustMatch('Password', 'ConfirmPassword')
+      });
   }
 
 
@@ -64,9 +66,10 @@ export class RegisterComponent implements OnInit {
     return true;
   }
 
-    // convenience getter for easy access to form fields
-    get f() { 
-      return this.registerPage.controls; }
+  // convenience getter for easy access to form fields
+  get f() {
+    return this.registerPage.controls;
+  }
 
 
   submit(registerPage) {
@@ -78,8 +81,12 @@ export class RegisterComponent implements OnInit {
           this.required = true;
         }
         else {
-          this.spinner.show();         
-         
+          this.spinner.show();
+
+          var password = EncryptPassword(registerPage.value.Password, registerPage.value.UserId);
+
+          registerPage.value.Password = password.toString();
+
           this.registerService.regsiter(registerPage.value).subscribe(
             response => {
               if (response.status == "302") {
@@ -87,41 +94,43 @@ export class RegisterComponent implements OnInit {
                 this.reset();
                 this.spinner.hide();
               }
-              else if(response.status == "404")
-              {
+              else if (response.status == "404") {
                 this.message.showResgistrationFailed();
                 this.reset();
                 this.spinner.hide();
               }
-              else if(response.status == "200") {
+              else if (response.status == "200") {
                 this.message.showResgistrationSuccess();
                 this.reset();
                 this.spinner.hide();
-                
+
               }
             }
           )
         }
       }
     }
-    else
-    {
+    else {
       return;
     }
   }
 
 
-  reset()
-  {
+  reset() {
     this.registerPage.controls.setValue[""];
   }
 
-  fillUserId(){
+  fillUserId() {
     var fName: string = this.registerPage.controls["FirstName"].value;
-    var lName :string =  this.registerPage.controls["LastName"].value;
+    var lName: string = this.registerPage.controls["LastName"].value;
 
     this.registerPage.controls["UserId"].setValue(fName.charAt(0).toLocaleLowerCase() + lName.charAt(0).toLocaleLowerCase() + this.registerPage.controls["StaffId"].value);
 
+  }
+
+  login()
+  {
+    this.router.navigateByUrl("login");
   }
 
 
