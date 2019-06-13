@@ -1,28 +1,31 @@
-<div class="shadow p-2 mb-4 bg-white rounded"  > 
+<div class="shadow p-2 mb-4 bg-white rounded">
   <nav class="navbar navbar-expand-xl">
     <!-- Brand -->
-  <a class="gameInformation"  routerLink="list">Zen-Derivco</a>
+    <a class="gameInformation" routerLink="list">
+      <div _ngcontent-iridium-us-c11="" class="z right"></div>
+      <div _ngcontent-iridium-us-c12="" class="d right"></div>
+      Zen-Derivco
+    </a>
     <!-- Links -->
     <ul class="navbar-nav  ml-auto" style="float: right" *ngIf="isUserLoggedIn">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="list"><i class="fa fa-home"></i>&nbsp;Home</a>
-        </li>
-      
-        <!-- Dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              <i class="fa fa-tasks"></i>&nbsp;Allocation
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#"><i class="fa fa-users"></i>&nbsp;Team</a>
-            <a class="dropdown-item"routerLink="asset"><i class="fa fa-desktop"></i>&nbsp;Asset</a>            
-          </div>
-        </li>
-        <li class="nav-item"><a  class="nav-link" >|</a></li>
-        <li class="nav-item"><a  class="nav-link" routerLink="login" (click)="logout()">
-            <i class="fa fa-sign-out"></i>&nbsp;Logout</a> 
-        </li>
-      </ul>
-</nav>
-</div>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="list"><i class="fa fa-home"></i>&nbsp;Home</a>
+      </li>
 
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          <i class="fa fa-tasks"></i>&nbsp;Allocation
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#"><i class="fa fa-users"></i>&nbsp;Team</a>
+          <a class="dropdown-item" routerLink="asset"><i class="fa fa-desktop"></i>&nbsp;Asset</a>
+        </div>
+      </li>
+      <li class="nav-item"><a class="nav-link">|</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="login" (click)="logout()">
+          <i class="fa fa-sign-out"></i>&nbsp;Logout</a>
+      </li>
+    </ul>
+  </nav>
+</div>
