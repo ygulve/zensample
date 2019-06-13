@@ -2,6 +2,7 @@
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import '~@angular/material/theming';
+@import "~bootstrap/scss/bootstrap";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -124,6 +125,7 @@ table {
 {
   color: gray;
   font-style: italic;
+
 }
 
 .homecontainer {
@@ -132,6 +134,7 @@ table {
   color: gray;
   font-style: italic;
   margin-bottom: 5px;
+  width: 100%;
   
 }
 
@@ -249,13 +252,15 @@ input.location {
 }
 
 .label {
-  font-weight: bold;
-  color: #555555;
+  color: #525c65;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.5rem;
+    -webkit-font-smoothing: antialiased;
 }
 
 .buildcontainer {
   display: grid;
-  grid-template-columns: 100% auto;
+  grid-template-columns: 100% auto;   
 }
 
 .buildRequired {
@@ -644,13 +649,29 @@ table td {
   height: 0;
   position: absolute;
   display: block;
-  z-index: 5000;
+  //z-index: 5000;
   border-width: 25px;
   border-style: solid;
   border-bottom-color: transparent;
   border-right-color: transparent;
    border-top-color: #ff5483; 
    border-left-color: #ff5483;
+}
+.d[_ngcontent-iridium-us-c12]  {
+  border: solid #02b3e4;
+  border-width: 0 5px 5px 0;
+  display: inline-block;
+  padding: 5px;
+}
+.z[_ngcontent-iridium-us-c11]  {
+  border: solid #ff5483;
+  border-width: 0 5px 5px 0;
+  display: inline-block;
+  padding: 5px;
+}
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
 }
 
 h6, .h6 {
@@ -661,4 +682,22 @@ h6, .h6 {
   font-weight: 600;
   color: #ffffff;
   padding-left: 20px;
+}
+
+.modal-content{
+  width: 75% !important;
+  margin: auto;
+  position: absolute;  
+  left: 0;  
+  right: 0;  
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19); 
+  background-color:rgba(0,0,0,0.6);
+}
+
+.model-inner
+{
+ 
+  padding: 20px;
+  
+ 
 }
