@@ -8,56 +8,124 @@
   </div>
 
 
-<div class="buildcontainer color-light">
+  <div class="buildcontainer color-light">
 
-  <div class="col-md-16">
-    <div class="homecol">
-      <form [formGroup]="asset">
-        <div class="label-container">
-          <label>Select Employee</label>
-        </div>
-        <div class="txt-container">
-
-          <select class="form-control" formControlName='Gender' placeholder="Gender *" value=""
-            [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
-            <option value="0">Select</option>
-          </select>
-          <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
-            <div *ngIf="f.FirstName.errors.required">First Name is required</div>
+    <div class="col-md-16">
+      <div class="homecol">
+        <form [formGroup]="assetPage">
+          <div class="label-container">
+            <label>Select Employee</label>
           </div>
-        </div>
-        <div class="label-container">
-          <label>Desk Number</label>
-        </div>
-        <div class="txt-container">
-
-          <input type="text" class="form-control" formControlName='DeskNo' placeholder="Desk number *" value=""
-            [ngClass]="{ 'is-invalid': submitted && f.DeskNo.errors }" />
-          <div *ngIf="submitted && f.DeskNo.errors" class="invalid-feedback">
-            <div *ngIf="f.DeskNo.errors.required">Desk Number is required</div>
+          <div class="txt-container">
+            <select class="form-control" formControlName='EmployeeId' placeholder="EmployeeId *" value=""
+              [ngClass]="{ 'is-invalid': submitted && f.EmployeeId.errors }">
+              <option value="">Select</option>
+              <option *ngFor="let item of empList" value="{{item.employeeId}}">
+                {{item.staffId}} {{item.firstName}} {{item.lastName}}
+              </option>
+            </select>
+            <div *ngIf="submitted && f.EmployeeId.errors" class="invalid-feedback">
+              <div *ngIf="f.EmployeeId.errors.required">Employee is required</div>
+            </div>
           </div>
-        </div>
-
-        <div class="label-container">
-          <label>Asset Number</label>
-        </div>
-        <div class="txt-container">
-
-          <input type="text" class="form-control" formControlName='AssetNo' placeholder="Asset Number *" value=""
-            [ngClass]="{ 'is-invalid': submitted && f.AssetNo.errors }" />
-          <div *ngIf="submitted && f.AssetNo.errors" class="invalid-feedback">
-            <div *ngIf="f.AssetNo.errors.required">Asset Number is required</div>
+          <div class="label-container">
+            <label>Desk Number</label>
           </div>
-        </div>
-        <div class="label-container">
+          <div class="txt-container">
 
-        </div>
-        <div class="txt-container">
-          <input type="submit" class="btnSubmit rounded" (click)="submit(empPage)" value="Submit" /> &nbsp;
-          <input type="reset" class="btnSubmit rounded" value="Reset" />
-        </div>
-      </form>
+            <input type="text" class="form-control" formControlName='DeskNumber' placeholder="Desk number *" value=""
+              [ngClass]="{ 'is-invalid': submitted && f.DeskNumber.errors }" />
+            <div *ngIf="submitted && f.DeskNumber.errors" class="invalid-feedback">
+              <div *ngIf="f.DeskNumber.errors.required">Desk Number is required</div>
+            </div>
+          </div>
+
+          <div class="label-container">
+            <label>Asset Number</label>
+          </div>
+          <div class="txt-container">
+
+            <input type="text" class="form-control" formControlName='AssetNumber' placeholder="Asset Number *" value=""
+              [ngClass]="{ 'is-invalid': submitted && f.AssetNumber.errors }" />
+            <div *ngIf="submitted && f.AssetNumber.errors" class="invalid-feedback">
+              <div *ngIf="f.AssetNumber.errors.required">Asset Number is required</div>
+            </div>
+          </div>
+          <div class="label-container">
+
+          </div>
+          <div class="txt-container">
+            <input type="submit" class="btnSubmit rounded" (click)="submit(assetPage)" value="Submit" /> &nbsp;
+            <input type="reset" class="btnSubmit rounded" value="Reset" /> &nbsp;
+            <input type="button" class="btnSubmit rounded" (click)="myBootstrapModal.open()" value="Show List" />
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
-</div>
+
+<ngx-smart-modal #myBootstrapModal identifier="myBootstrapModal" [closable]="false"
+  customClass="modal-content no-padding" style="width: 600px;">
+  <div class="homecontainer color-dark rounded">
+    <div class="homecol1">
+      <h6>Asset Allocation List</h6>
+    </div>
+    <div _ngcontent-iridium-us-c22="" class="flag flag-bg-pink ng-star-inserted">
+    </div>
+    <div style="float: right;margin-right: 10px;">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeAddExpenseModal (click)="myBootstrapModal.close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <div class="model-inner">
+    <div class="right_float">
+      <input type="text" [(ngModel)]="queryString" placeholder="Search" class="search-box-txt rounded"
+        (input)="onSearch()" />
+    </div><br>
+    <div class="modal-bodssy">
+      <div class="content_box">
+        <div class="right_barss ">
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="lorem" role="tabpanel">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th style="width: 75px;">Staff Id</th>
+                    <th>Name</th>
+                    <th>Asset Number</th>
+                    <th style="width: 120px;">Desk Number</th>
+                    <th style="width:80px;">Manage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let asset of assetdata">
+                    <td>{{asset.staffId}}</td>
+                    <td>{{asset.name}}</td>
+                    <td>{{asset.assetNumber}}</td>
+                    <td>{{asset.deskNumber}}</td>
+                    <td>
+                      <button type="button" class="icon_button" data-dismiss="modal"  (click)="editItem(asset.employeeId)">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                      </button>
+                      &nbsp;
+                      <button type="button" class="icon_button" (click)="open(asset.employeeId)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="noRecord" *ngIf="noRecord">No record found.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="myBootstrapModal.close()">Close
+      </button>
+    </div>
+  </div>
+</ngx-smart-modal>
